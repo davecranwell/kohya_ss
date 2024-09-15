@@ -8,8 +8,9 @@ if [[ -n "${KOHYA_REF}" ]]; then
     ref="${KOHYA_REF}"
 else
     # The latest tagged release
-    ref="$(curl -s https://api.github.com/repos/bmaltais/kohya_ss/tags | \
-            jq -r '.[0].name')"
+    # ref="$(curl -s https://api.github.com/repos/bmaltais/kohya_ss/tags | \
+    #        jq -r '.[0].name')"
+    ref=https://github.com/davecranwell/sd-scripts
 fi
 
 # -r argument has priority

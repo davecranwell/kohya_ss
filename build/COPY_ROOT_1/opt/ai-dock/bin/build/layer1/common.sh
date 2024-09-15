@@ -9,14 +9,14 @@ build_common_main() {
 
 build_common_install_kohya_ss() {
     # Get latest tag from GitHub if not provided
-    if [[ -z $KOHYA_BUILD_REF ]]; then
-        export KOHYA_BUILD_REF="$(curl -s https://api.github.com/repos/bmaltais/kohya_ss/tags | \
-            jq -r '.[0].name')"
-        env-store KOHYA_BUILD_REF
-    fi
+    # if [[ -z $KOHYA_BUILD_REF ]]; then
+    #     export KOHYA_BUILD_REF="$(curl -s https://api.github.com/repos/bmaltais/kohya_ss/tags | \
+    #         jq -r '.[0].name')"
+    #     env-store KOHYA_BUILD_REF
+    # fi
 
     cd /opt
-    git clone --recursive https://github.com/bmaltais/kohya_ss
+    git clone --recursive https://github.com/davecranwell/sd-scripts
     cd /opt/kohya_ss
     git checkout "$KOHYA_BUILD_REF"
     printf "\n%s\n" '#myTensorButton, #myTensorButtonStop {display:none!important;}' >> assets/style.css

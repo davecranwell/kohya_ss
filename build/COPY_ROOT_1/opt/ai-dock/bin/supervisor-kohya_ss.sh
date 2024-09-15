@@ -75,7 +75,7 @@ function start() {
     
     cd /opt/kohya_ss
     source "$KOHYA_VENV/bin/activate"
-    LD_PRELOAD=libtcmalloc.so python kohya_gui.py \
+    LD_PRELOAD=libtcmalloc.so python training_api.py \
         ${ARGS_COMBINED} --server_port ${LISTEN_PORT}
 }
 
