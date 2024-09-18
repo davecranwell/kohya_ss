@@ -8,12 +8,13 @@ services:
       args:
         PYTHON_VERSION: ${PYTHON_VERSION:-3.10}
         PYTORCH_VERSION: ${PYTORCH_VERSION:-2.4.0}
-        KOHYA_BUILD_REF: ${KOHYA_BUILD_REF:-}
+        KOHYA_BUILD_REF: ${KOHYA_BUILD_REF:-main}
         IMAGE_BASE: ${IMAGE_BASE:-ghcr.io/ai-dock/python:${PYTHON_VERSION:-3.10}-v2-cuda-12.1.1-base-22.04}
-      tags:
-        - "ghcr.io/ai-dock/kohya_ss:${IMAGE_TAG:-cuda-12.1.1-base-22.04}"
+      # tags:
+      #   - "ghcr.io/ai-dock/kohya_ss:${IMAGE_TAG:-cuda-12.1.1-base-22.04}"
         
-    image: ghcr.io/ai-dock/kohya_ss:${IMAGE_TAG:-cuda-12.1.1-base-22.04}
+    # image: ghcr.io/ai-dock/kohya_ss:${IMAGE_TAG:-cuda-12.1.1-base-22.04}
+    image: xcession2k/kohya_rest:latest
     
     devices:
       - "/dev/dri:/dev/dri"
@@ -53,7 +54,7 @@ services:
         - WORKSPACE_SYNC=${WORKSPACE_SYNC:-false}
         - CF_TUNNEL_TOKEN=${CF_TUNNEL_TOKEN:-}
         - CF_QUICK_TUNNELS=${CF_QUICK_TUNNELS:-true}
-        - WEB_ENABLE_AUTH=${WEB_ENABLE_AUTH:-true}
+        - WEB_ENABLE_AUTH=${WEB_ENABLE_AUTH:-false} # NOTE 2024-09-18 set to true in production/vast
         - WEB_ENABLE_HTTPS=${WEB_ENABLE_HTTPS:-false}
         - WEB_USER=${WEB_USER:-user}
         - WEB_PASSWORD=${WEB_PASSWORD:-password}

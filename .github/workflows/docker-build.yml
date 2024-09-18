@@ -65,7 +65,7 @@ jobs:
           img_path_dhub="${{ vars.DOCKERHUB_USER }}/${{ env.REPO_NAME }}-cuda"
           
           if [[ -z '${{ matrix.build.kohya }}' ]]; then
-                KOHYA_BUILD_REF="$(curl -s https://api.github.com/repos/bmaltais/kohya_ss/tags | jq -r '.[0].name')"
+                KOHYA_BUILD_REF="$(curl -s https://api.github.com/repos/davecranwell/kohya_ss/tags | jq -r '.[0].name')"
             else
                 KOHYA_BUILD_REF="${{ matrix.build.kohya }}"
             fi

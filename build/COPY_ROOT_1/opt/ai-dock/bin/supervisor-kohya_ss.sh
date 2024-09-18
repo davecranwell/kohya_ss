@@ -46,8 +46,8 @@ function start() {
         PLATFORM_ARGS="--use-rocm"
     fi
 
-    BASE_ARGS="--headless"
-    
+    # BASE_ARGS="--headless" # NOTE 2024-09-18 headless is not a commandline option for training_api.py
+    BASE_ARGS=""
     # Delay launch until micromamba is ready
     if [[ -f /run/workspace_sync || -f /run/container_config ]]; then
         fuser -k -SIGTERM ${LISTEN_PORT}/tcp > /dev/null 2>&1 &

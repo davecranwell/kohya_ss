@@ -3,9 +3,9 @@
 ARG IMAGE_BASE="ghcr.io/ai-dock/python:3.10-v2-cuda-12.1.1-base-22.04"
 FROM ${IMAGE_BASE}
 
-LABEL org.opencontainers.image.source https://github.com/ai-dock/kohya_ss
+LABEL org.opencontainers.image.source https://github.com/davecranwell/kohya_ss
 LABEL org.opencontainers.image.description "Kohya's GUI docker images for use in GPU cloud and local environments. Includes AI-Dock base for authentication and improved user experience."
-LABEL maintainer="Rob Ballantyne <rob@dynamedia.uk>"
+LABEL maintainer="Dave Cranwell <dave@davecranwell.com>"
 
 ENV KOHYA_VENV=$VENV_DIR/kohya
 ENV KOHYA_VENV_PYTHON=$KOHYA_VENV/bin/python
