@@ -7,12 +7,14 @@
 ### Edit the following arrays to suit your workflow - values must be quoted and separated by newlines or spaces.
 
 DISK_GB_REQUIRED=30
-  
+
 PIP_PACKAGES=(
     #"package==version"
-  )
+)
 
 CHECKPOINT_MODELS=(
+### BEGIN_CHECKPOINT_MODELS ###
+### END_CHECKPOINT_MODELS ###
     #"https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.ckpt"
     "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
     "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors"
@@ -29,7 +31,6 @@ function provisioning_start() {
     DISK_GB_USED=$(($(df --output=used -m "${WORKSPACE}" | tail -n1) / 1000))
     DISK_GB_ALLOCATED=$(($DISK_GB_AVAILABLE + $DISK_GB_USED))
     provisioning_print_header
-    provisioning_get_mamba_packages
     provisioning_get_pip_packages
     provisioning_get_models \
         "${WORKSPACE}/storage/stable_diffusion/models/ckpt" \
@@ -75,7 +76,7 @@ function provisioning_print_end() {
     printf "\nProvisioning complete:  Web UI will start now\n\n"
 }
 
-# Download from $1 URL to $2 file path
+# Download from $1 URL to $2 file path but only if the file is not already present (-nc = no clobber)
 function provisioning_download() {
     if [[ -n $HF_TOKEN && $1 =~ ^https://([a-zA-Z0-9_-]+\.)?huggingface\.co(/|$|\?) ]]; then
         auth_token="$HF_TOKEN"
