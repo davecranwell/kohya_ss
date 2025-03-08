@@ -16,15 +16,17 @@ build_common_install_kohya_ss() {
     # fi
 
     # NOTE 2024-09-18 Fair amount of fiddling here so build refs aren't being used at all
-    cd /opt
-    mkdir kohya_ss
-    git clone --recursive https://github.com/davecranwell/sd-scripts kohya_ss
-    cd /opt/kohya_ss
-    git checkout "$KOHYA_BUILD_REF"
-    # printf "\n%s\n" '#myTensorButton, #myTensorButtonStop {display:none!important;}' >> assets/style.css
-    "$KOHYA_VENV_PIP" install --no-cache-dir \
-        tensorboard \
-        -r requirements.txt
+    # cd /opt
+    # mkdir kohya_ss
+    # git clone --recursive https://github.com/davecranwell/sd-scripts kohya_ss
+    # cd /opt/kohya_ss
+    # git checkout "$KOHYA_BUILD_BRANCH"
+    # # printf "\n%s\n" '#myTensorButton, #myTensorButtonStop {display:none!important;}' >> assets/style.css
+    # "$KOHYA_VENV_PIP" install --no-cache-dir \
+    #     tensorboard \
+    #     -r requirements.txt
+    
+    echo ""
 }
 
 build_common_run_tests() {

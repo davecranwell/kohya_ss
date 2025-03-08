@@ -4,7 +4,7 @@
 set -eo pipefail
 umask 002
 
-source /opt/ai-dock/bin/build/layer1/common.sh
+# source /opt/ai-dock/bin/build/layer1/common.sh
 
 if [[ "$XPU_TARGET" == "NVIDIA_GPU" ]]; then
     source /opt/ai-dock/bin/build/layer1/nvidia.sh

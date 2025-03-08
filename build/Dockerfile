@@ -24,11 +24,15 @@ COPY --chown=0:1111 ./COPY_ROOT_0/ /
 ARG IMAGE_BASE
 RUN set -eo pipefail && /opt/ai-dock/bin/build/layer0/init.sh | tee /var/log/build.log
 
-# Install Kohya_ss
-ARG KOHYA_BUILD_REF
-ENV KOHYA_BUILD_REF=${KOHYA_BUILD_REF}
+# Install misc
 COPY --chown=0:1111 ./COPY_ROOT_1/ /
 RUN set -eo pipefail && /opt/ai-dock/bin/build/layer1/init.sh | tee -a /var/log/build.log
+
+# Install Kohya_ss
+COPY --chown=0:1111 COPY_ROOT_99/opt/kohya_ss/setup.py /opt/kohya_ss/setup.py
+COPY --chown=0:1111 COPY_ROOT_99/opt/kohya_ss/requirements.txt /opt/kohya_ss/requirements.txt
+WORKDIR /opt/kohya_ss
+RUN "$KOHYA_VENV_PIP" install --no-cache-dir tensorboard -r requirements.txt
 
 # Copy overrides and models into later layers for fast rebuilds
 COPY --chown=0:1111 ./COPY_ROOT_99/ /

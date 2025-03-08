@@ -2,12 +2,12 @@
 
 build_nvidia_main() {
     build_nvidia_install_kohya_ss
-    build_common_run_tests
+    # build_common_run_tests
     build_nvidia_run_tests
 }
 
 build_nvidia_install_kohya_ss() {
-    build_common_install_kohya_ss
+    # build_common_install_kohya_ss
     "$KOHYA_VENV_PIP" install --no-cache-dir \
         bitsandbytes \
         onnxruntime-gpu \
