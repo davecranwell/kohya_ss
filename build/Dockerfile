@@ -37,6 +37,10 @@ RUN "$KOHYA_VENV_PIP" install --no-cache-dir tensorboard -r requirements.txt
 # Copy overrides and models into later layers for fast rebuilds
 COPY --chown=0:1111 ./COPY_ROOT_99/ /
 
+# yuk, without this the api can't even created a DB.
+RUN chmod -R 777 /opt/kohya_ss
+   
+
 #RUN set -eo pipefail && /opt/ai-dock/bin/build/layer99/init.sh | tee -a /var/log/build.log
 
 ENV PYTHON_DEFAULT_VENV=kohya

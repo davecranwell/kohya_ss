@@ -1,5 +1,3 @@
-version: '3.8'
-# Compose file build variables set in .env
 services:
     supervisor:
         platform: linux/amd64
@@ -28,8 +26,8 @@ services:
             #- /path/to/common_storage:${WORKSPACE:-/workspace/}storage/:rshared
             # Will echo to root-owned authorized_keys file;
             # Avoids changing local file owner
-            - ./config/authorized_keys:/root/.ssh/authorized_keys_mount
-            - ./config/provisioning/default.sh:/opt/ai-dock/bin/provisioning.sh
+            # - ./config/authorized_keys:/root/.ssh/authorized_keys_mount
+            # - ./config/provisioning/default.sh:/opt/ai-dock/bin/provisioning.sh
 
         ports:
             # SSH available on host machine port 2222 to avoid conflict. Change to suit
@@ -65,8 +63,8 @@ services:
             - SERVICEPORTAL_PORT_HOST=${SERVICEPORTAL_PORT_HOST:-1111}
             - SERVICEPORTAL_METRICS_PORT=${SERVICEPORTAL_METRICS_PORT:-21111}
             - SERVICEPORTAL_URL=${SERVICEPORTAL_URL:-}
-            - KOHYA_BRANCH=${KOHYA_BRANCH:-}
-            - KOHYA_ARGS=${KOHYA_ARGS:-}
+            # - KOHYA_BRANCH=${KOHYA_BRANCH:-}
+            # - KOHYA_ARGS=${KOHYA_ARGS:-}
             - KOHYA_PORT_HOST=${KOHYA_PORT_HOST:-7860}
             - KOHYA_PORT_LOCAL=${KOHYA_PORT_LOCAL:-17860}
             - KOHYA_METRICS_PORT=${KOHYA_METRICS_PORT:-27860}
@@ -88,8 +86,8 @@ services:
 
         # extra_hosts:
         #     - 'host.docker.internal:172.17.0.1'  # Docker bridge network default gateway
-        network_mode: 'bridge'
-        extra_hosts:
-            # Use the actual WSL2 IP address
-            # found with $(ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
-            - 'host.docker.internal:172.19.99.191' # Replace with your actual WSL2 IP from hostname -I
+        # network_mode: 'bridge'
+        # extra_hosts:
+        # Use the actual WSL2 IP address
+        # found with $(ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+        # - 'host.docker.internal:172.19.99.191' # Replace with your actual WSL2 IP from hostname -I

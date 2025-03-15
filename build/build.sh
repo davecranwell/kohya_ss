@@ -18,3 +18,9 @@ echo "Cleaning up..."
 rm -rf COPY_ROOT_99/opt/kohya_ss/*
 
 echo "Build complete!" 
+
+echo "Pushing..."
+docker login
+docker push xcession2k/kohya_rest:latest
+
+echo "Push complete!"
