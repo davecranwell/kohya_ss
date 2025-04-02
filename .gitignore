@@ -5,3 +5,4 @@ config/authorized_keys
 config/rclone
 tpdocs
 .env
+build/COPY_ROOT_99/opt/kohya_ss/*
